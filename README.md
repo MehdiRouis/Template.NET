@@ -1,8 +1,7 @@
-# Timey - L'outil des entrepreneurs
+# Template .NET - Base
 
 ## Technologies
 
-- .NET 8
-- Angular 14
+- .NET 9
 - PostgreSQL
 - Hangfire

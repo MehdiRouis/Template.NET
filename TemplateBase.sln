@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{5C5735D0-A47F-4EC1-85A5-92609BD5E8CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateBase.Core", "TemplateBase.Core\TemplateBase.Core.csproj", "{DE010CAD-C218-4B02-9676-A708A93832CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateBase.Data", "TemplateBase.Data\TemplateBase.Data.csproj", "{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateBase.Services", "TemplateBase.Services\TemplateBase.Services.csproj", "{6918E418-306D-4801-BF16-AAA7B7F8F6FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateBase.Api", "TemplateBase.Api\TemplateBase.Api.csproj", "{636DB76F-57F0-4A2D-B959-99D4564E4E44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Preprod|Any CPU = Preprod|Any CPU
+		Prod|Any CPU = Prod|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Preprod|Any CPU.ActiveCfg = Preprod|Any CPU
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Preprod|Any CPU.Build.0 = Preprod|Any CPU
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Prod|Any CPU.ActiveCfg = Prod|Any CPU
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Prod|Any CPU.Build.0 = Prod|Any CPU
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE010CAD-C218-4B02-9676-A708A93832CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Preprod|Any CPU.ActiveCfg = Preprod|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Preprod|Any CPU.Build.0 = Preprod|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Prod|Any CPU.ActiveCfg = Prod|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Prod|Any CPU.Build.0 = Prod|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Preprod|Any CPU.ActiveCfg = Preprod|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Preprod|Any CPU.Build.0 = Preprod|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Prod|Any CPU.ActiveCfg = Prod|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Prod|Any CPU.Build.0 = Prod|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Preprod|Any CPU.ActiveCfg = Preprod|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Preprod|Any CPU.Build.0 = Preprod|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Prod|Any CPU.ActiveCfg = Prod|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Prod|Any CPU.Build.0 = Prod|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636DB76F-57F0-4A2D-B959-99D4564E4E44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DE010CAD-C218-4B02-9676-A708A93832CF} = {5C5735D0-A47F-4EC1-85A5-92609BD5E8CA}
+		{56BBE4E4-9F16-4B9C-B7AA-5B2ABD855418} = {5C5735D0-A47F-4EC1-85A5-92609BD5E8CA}
+		{6918E418-306D-4801-BF16-AAA7B7F8F6FB} = {5C5735D0-A47F-4EC1-85A5-92609BD5E8CA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2CB40F0-EDCC-4548-A1AC-CBF8896A79CE}
+	EndGlobalSection
+EndGlobal

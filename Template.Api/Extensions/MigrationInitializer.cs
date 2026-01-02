@@ -1,5 +1,5 @@
-﻿using Template.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Template.Data;
 
 namespace Template.Api.Extensions
 {

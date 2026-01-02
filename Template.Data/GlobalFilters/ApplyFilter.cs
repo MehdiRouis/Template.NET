@@ -1,7 +1,7 @@
-﻿using Template.Core.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
+using Template.Core.Domain.Entities;
 
 namespace Template.Data.GlobalFilters
 {

@@ -1,6 +1,6 @@
-﻿using Template.Core;
-using Template.Core.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Template.Core;
+using Template.Core.Domain.Entities;
 
 namespace Template.Data
 {

@@ -1,6 +1,6 @@
-﻿using Template.Api.Models.Views.Responses.Home;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Template.Api.Models.Views.Responses.Home;
 
 namespace Template.Api.Controllers.v1.Home
 {

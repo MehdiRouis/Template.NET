@@ -1,4 +1,4 @@
-﻿using Template.Core.Domain;
+﻿using Template.Core.Domain.Entities;
 
 namespace Template.Core
 {

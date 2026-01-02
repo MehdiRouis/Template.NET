@@ -1,10 +1,10 @@
-﻿using Template.Core.Domain;
-using Template.Core.Domain.Users;
-using Template.Data.GlobalFilters;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql;
 using System.Data;
+using Template.Core.Domain.Entities;
+using Template.Core.Domain.Entities.Users;
+using Template.Data.GlobalFilters;
 
 namespace Template.Data
 {

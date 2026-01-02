@@ -1,6 +1,8 @@
-﻿using Template.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using Template.Api.Application.Authentication;
+using Template.Core;
 using Template.Data;
-using Microsoft.EntityFrameworkCore;
+using Template.Services.Users;
 
 namespace Template.Api.Extensions
 {
@@ -16,10 +18,12 @@ namespace Template.Api.Extensions
             // ===== Repositories =====
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+            // ===== Application Services =====
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ITokenService, TokenService>();
+
             // ===== Domain Services =====
-            /*services.AddScoped<IJwtSigningService, JwtSigningService>();
-            services.AddScoped<IServiceService, ServiceService>();
-            services.AddScoped<IPermissionService, PermissionService>();*/
+            services.AddScoped<IUserService, UserService>();
 
             // ===== Controllers & JSON =====
             services.AddControllers()

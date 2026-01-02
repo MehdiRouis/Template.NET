@@ -14,7 +14,7 @@ public sealed class DesignTimeDbContextFactory
             .AddEnvironmentVariables()
             .Build();
 
-        string connectionString = configuration["Database:ApplicationContext"] ?? "";
+        string connectionString = configuration["Database:ConnectionString"] ?? "";
         string provider = configuration["Database:Provider"] ?? "PostgreSQL";
 
         var options = new DbContextOptionsBuilder<ApplicationDbContext>();

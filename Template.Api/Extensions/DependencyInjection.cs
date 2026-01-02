@@ -12,14 +12,7 @@ namespace Template.Api.Extensions
         {
 
             var provider = configuration["Database:Provider"] ?? "PostgreSQL";
-            var connectionString = configuration["Database:ApplicationContext"] ?? "";
-
-            bool isDesignTime = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName?.StartsWith("Microsoft.EntityFrameworkCore.Design") == true);
-
-            if (isDesignTime && string.IsNullOrWhiteSpace(connectionString))
-            {
-                connectionString = "Host=localhost;Database=dev;Username=dev;Password=dev";
-            }
+            var connectionString = configuration["Database:ConnectionString"] ?? "";
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -38,15 +31,6 @@ namespace Template.Api.Extensions
                         throw new InvalidOperationException($"Unsupported DB provider: {provider}");
                 }
             });
-
-
-            // ===== Database =====
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("ApplicationContext"))
-                       .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll));
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySQL(configuration.GetConnectionString("ApplicationContext") ?? "")
-                       .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll));
 
             // ===== Repositories =====
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

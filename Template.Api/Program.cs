@@ -9,7 +9,7 @@ using Template.Api.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegisterServices(builder.Configuration);
-
+builder.Services.AddRateLimiter(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -72,5 +72,6 @@ else
     app.UseHsts();
 }
 
+app.UseRateLimiter();
 app.MapControllers();
 app.Run();

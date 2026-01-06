@@ -6,14 +6,19 @@ namespace Template.Core.Domain.Entities.Users
     public class UserSession : BaseEntity
     {
         [Column("user_id")]
-        [ForeignKey("User")]
         public Guid UserId { get; set; }
 
-        [Column("session_token")]
-        public string SessionToken { get; set; } = string.Empty;
+        [Column("refresh_token_hash")]
+        public string RefreshTokenHash { get; set; } = string.Empty;
 
-        [Column("expires_at")]
-        public DateTime ExpiresAt { get; set; }
+        [Column("access_expires_at")]
+        public DateTime AccessExpiresAt { get; set; }
+
+        [Column("refresh_expires_at")]
+        public DateTime RefreshExpiresAt { get; set; }
+
+        [Column("revoked_at")]
+        public DateTime? RevokedAt { get; set; }
 
         public virtual User? User { get; set; }
     }

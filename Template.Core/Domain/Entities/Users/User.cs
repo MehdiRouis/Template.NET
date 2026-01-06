@@ -16,5 +16,9 @@ namespace Template.Core.Domain.Entities.Users
 
         [Column("is_active")]
         public required bool IsActive { get; set; }
+
+        public virtual IList<UserPassword>? UserPasswords { get; set; }
+
+        public virtual IList<UserSession>? UserSessions { get; set; }
     }
 }

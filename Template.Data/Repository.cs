@@ -202,37 +202,9 @@ namespace Template.Data
 
         #region Properties
 
-        /// <summary>
-        /// Gets a table
-        /// </summary>
-        public virtual IQueryable<T> Table
-        {
-            get
-            {
-                var query = _entities.AsQueryable();
+        public virtual IQueryable<T> Table => _entities;
 
-                /*foreach (var property in _context.Model.FindEntityType(typeof(T)).GetNavigations())
-                    query = query.Include(property.Name);*/
-
-                return query;
-            }
-        }
-
-        /// <summary>
-        /// Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only operations
-        /// </summary>
-        public virtual IQueryable<T> TableNoTracking
-        {
-            get
-            {
-                var query = _entities.AsQueryable().AsNoTracking();
-
-                /*foreach (var property in _context.Model.FindEntityType(typeof(T)).GetNavigations())
-                    query = query.Include(property.Name);*/
-
-                return query;
-            }
-        }
+        public virtual IQueryable<T> TableNoTracking => _entities.AsNoTracking();
 
         #endregion
     }

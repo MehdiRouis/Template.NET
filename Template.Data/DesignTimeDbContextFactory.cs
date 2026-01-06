@@ -11,7 +11,7 @@ public sealed class DesignTimeDbContextFactory
     public ApplicationDbContext CreateDbContext(string[] args)
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
-        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!; 
         var configuration = new ConfigurationBuilder()
             .SetBasePath(basePath)
             .AddJsonFile("appsettings.json", optional: false)
@@ -32,6 +32,10 @@ public sealed class DesignTimeDbContextFactory
                 break;
 
             case "mysql":
+                options.UseMySQL(connectionString);
+                break;
+
+            case "mariadb":
                 options.UseMySQL(connectionString);
                 break;
 

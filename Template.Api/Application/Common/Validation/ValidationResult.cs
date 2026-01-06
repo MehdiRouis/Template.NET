@@ -12,6 +12,6 @@ public sealed class ValidationResult
         Errors = errors;
     }
 
-    public static ValidationResult From(List<DomainError> errors)
-        => new ValidationResult(errors);
+    public static ValidationResult From(List<DomainError> errors) => new ValidationResult(errors);
+    public static ValidationResult From(DomainError error) => new ValidationResult(new List<DomainError> { error });
 }

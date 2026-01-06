@@ -8,7 +8,7 @@ using Template.Data.GlobalFilters;
 
 namespace Template.Data
 {
-    public class ApplicationDbContext : DbContext, IDbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -21,26 +21,6 @@ namespace Template.Data
         public DbSet<UserSession> UsersSessions { get; set; }
 
 
-        /// <summary>
-        /// Executes the given DDL/DML command against the database.
-        /// </summary>
-        /// <param name="sql">The command string</param>
-        /// <param name="parameters">The parameters to apply to the command string.</param>
-        /// <returns>The DbDataReader object that lets us read the return data.</returns>
-        public DataSet ExecuteSqlCommandWithReturn(string sql, params NpgsqlParameter[] parameters)
-        {
-            using var connection = (NpgsqlConnection)Database.GetDbConnection();
-            using var command = connection.CreateCommand();
-            command.CommandText = sql;
-            command.Parameters.AddRange(parameters);
-
-            var dSet = new DataSet();
-            using var da = new NpgsqlDataAdapter(command);
-
-            connection.Open();
-            da.Fill(dSet);
-            return dSet;
-        }
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             OnBeforeSaving();

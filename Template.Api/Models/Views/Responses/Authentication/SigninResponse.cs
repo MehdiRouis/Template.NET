@@ -2,23 +2,19 @@
 
 namespace Template.Api.Models.Views.Responses.Authentication
 {
-    public class SignupResponse
+    public class SigninResponse
     {
         public bool Success { get; set; }
-
         public required string Message { get; set; }
-
         public UserDto? User { get; set; }
-
         public UserSessionDto? Session { get; set; }
-
-        public SignupResultCode Code { get; set; }
+        public SigninResultCode Code { get; set; }
     }
 
-    public enum SignupResultCode
+    public enum SigninResultCode
     {
         Success,
         InvalidRequest,
-        AlreadyExists
+        InvalidCredentials
     }
 }

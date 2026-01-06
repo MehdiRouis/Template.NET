@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using Template.Api.Application.Authentication;
+using Template.Api.Application.Common.Validation;
 using Template.Core;
 using Template.Data;
+using Template.Services.Security;
 using Template.Services.Users;
 
 namespace Template.Api.Extensions
@@ -39,8 +42,26 @@ namespace Template.Api.Extensions
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<ITokenService, TokenService>();
 
+            // ===== Security Services =====
+            services.AddScoped<IHashService, Argon2idHashService>();
+
             // ===== Domain Services =====
             services.AddScoped<IUserService, UserService>();
+
+            // ===== Validators =====
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var concreteValidators = assembly.GetTypes()
+                .Where(t => !t.IsAbstract && !t.IsInterface)
+                .SelectMany(t => t.GetInterfaces()
+                    .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequestValidator<>))
+                    .Select(i => new { Service = i, Implementation = t })
+                )
+                .Where(x => !x.Implementation.IsGenericTypeDefinition &&
+                            !x.Implementation.Name.StartsWith("RequestValidatorProvider"));
+
+            foreach (var v in concreteValidators)
+                services.AddScoped(v.Service, v.Implementation);
 
             // ===== Controllers & JSON =====
             services.AddControllers()

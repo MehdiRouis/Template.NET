@@ -1,27 +1,28 @@
-﻿using Template.Core.Domain.Errors.Common;
+﻿/*using Template.Core.Domain.Errors.Common;
 
-namespace Template.Api.Application.Common.Validation;
-
-public sealed class CompositeRequestValidator<T> : IRequestValidator<T>
+namespace Template.Api.Application.Common.Validation
 {
-    private readonly IEnumerable<IRequestValidator<T>> _validators;
-
-    public CompositeRequestValidator(IEnumerable<IRequestValidator<T>> validators)
+    public sealed class CompositeRequestValidator<T> : IRequestValidator<T>
     {
-        _validators = validators.Where(v => v.GetType() != typeof(CompositeRequestValidator<T>));
-    }
+        private readonly IEnumerable<IRequestRule<T>> _rules;
 
-    public ValidationResult Validate(T request)
-    {
-        var errors = new List<DomainError>();
-
-        foreach (var v in _validators)
+        public CompositeRequestValidator(IEnumerable<IRequestRule<T>> rules)
         {
-            var result = v.Validate(request);
-            if (!result.IsValid)
-                errors.AddRange(result.Errors);
+            _rules = rules;
         }
 
-        return ValidationResult.From(errors);
+        public ValidationResult Validate(T request)
+        {
+            var errors = new List<DomainError>();
+
+            foreach (var rule in _rules)
+            {
+                var result = rule.Validate(request);
+                if (!result.IsValid)
+                    errors.AddRange(result.Errors);
+            }
+
+            return ValidationResult.From(errors);
+        }
     }
-}
+}*/

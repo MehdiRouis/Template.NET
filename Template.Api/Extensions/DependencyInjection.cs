@@ -2,6 +2,7 @@
 using System.Reflection;
 using Template.Api.Application.Authentication;
 using Template.Api.Application.Common.Validation;
+using Template.Api.Security.Sessions;
 using Template.Core;
 using Template.Data;
 using Template.Services.Security;

@@ -35,6 +35,17 @@ namespace Template.Services.Users
 
         #region Users
         /// <summary>
+        /// Retrieves a user with the specified unique identifier.
+        /// </summary>
+        /// <param name="id">The unique identifier of the user to retrieve.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the user with the specified
+        /// identifier, or <see langword="null"/> if no user is found.</returns>
+        public async Task<User?> GetByIdAsync(Guid id)
+        {
+            return await _userRepository.TableNoTracking.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        /// <summary>
         /// Asynchronously determines whether the specified email address is not used by any existing user.
         /// </summary>
         /// <param name="email">The email address to check for uniqueness. Cannot be null or empty.</param>
@@ -95,6 +106,17 @@ namespace Template.Services.Users
         #endregion Users
 
         #region UsersSessions
+        /// <summary>
+        /// Asynchronously retrieves a user session by its unique identifier.
+        /// </summary>
+        /// <param name="id">The unique identifier of the user session to retrieve.</param>
+        /// <returns>A <see cref="UserSession"/> instance if a session with the specified identifier exists; otherwise, <see
+        /// langword="null"/>.</returns>
+        public async Task<UserSession?> GetSessionByIdAsync(Guid id)
+        {
+            return await _userSessionRepository.TableNoTracking.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
         /// <summary>
         /// Creates a new user session with access and refresh token expiration times.
         /// </summary>

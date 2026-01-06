@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Template.Api.Application.Authentication;
+using Template.Api.Models.Dtos.Users;
 using Template.Api.Models.Views.Requests.Authentication;
 using Template.Api.Models.Views.Responses.Authentication;
 
@@ -52,7 +55,13 @@ namespace Template.Api.Controllers.v1.Authentication
             return TypedResults.Ok(result);
         }
 
-
+        /// <summary>
+        /// Authenticates a user based on the provided sign-in credentials and returns the result of the login attempt.
+        /// </summary>
+        /// <param name="request">The sign-in request containing user credentials to be validated. Cannot be null.</param>
+        /// <returns>A result indicating the outcome of the login attempt: an HTTP 200 OK with a sign-in response if
+        /// authentication succeeds; an HTTP 400 Bad Request with details if the request is invalid; or an HTTP 401
+        /// Unauthorized if the credentials are incorrect.</returns>
         [AllowAnonymous, HttpPost("auth-api/login")]
         public async Task<Results<Ok<SigninResponse>, BadRequest<SigninResponse>, UnauthorizedHttpResult>> Login([FromBody] SigninRequest request)
         {
@@ -72,6 +81,18 @@ namespace Template.Api.Controllers.v1.Authentication
                         TypedResults.BadRequest(result)
                 };
             }
+
+            return TypedResults.Ok(result);
+        }
+
+
+        [HttpGet("auth-api/me")]
+        public async Task<Results<Ok<MeResponse>, UnauthorizedHttpResult>> Me()
+        {
+            var result = await _authenticationService.MeAsync(User);
+
+            if (!result.Success)
+                return TypedResults.Unauthorized();
 
             return TypedResults.Ok(result);
         }

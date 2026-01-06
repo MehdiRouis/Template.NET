@@ -21,8 +21,8 @@ namespace Template.Api.Application.Authentication
         public TokenService(IConfiguration configuration)
         {
             var project = configuration["Project:Name"]!.ToLowerInvariant();
-            _issuer = project + "-iam";
-            _audience = project + "-api";
+            _issuer = project + ".identity";
+            _audience = project + ".api";
             if (!int.TryParse(configuration["Jwt:ExpiresInMinutes"] ?? "10", out _tokenExpiresInMinutes))
             {
                 _tokenExpiresInMinutes = 10;

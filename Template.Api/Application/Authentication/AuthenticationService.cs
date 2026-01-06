@@ -1,4 +1,6 @@
-﻿using Template.Api.Application.Common.Validation;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Template.Api.Application.Common.Validation;
 using Template.Api.Models.Dtos.Users;
 using Template.Api.Models.Views.Requests.Authentication;
 using Template.Api.Models.Views.Responses.Authentication;
@@ -152,6 +154,37 @@ namespace Template.Api.Application.Authentication
                     Email = user.Email,
                     FullName = user.FullName,
                     Phone = user.Phone
+                }
+            };
+        }
+
+        /// <summary>
+        /// Retrieves information about the currently authenticated user based on the provided claims principal.
+        /// </summary>
+        /// <param name="principal">The claims principal representing the authenticated user. Must contain a valid subject claim identifying the
+        /// user.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains a <see cref="MeResponse"/> with
+        /// user information if the user is found and active; otherwise, a response indicating failure.</returns>
+        public async Task<MeResponse> MeAsync(ClaimsPrincipal principal)
+        {
+            var userId = principal.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            if (userId == null)
+                return new MeResponse { Success = false };
+
+            var user = await _userService.GetByIdAsync(Guid.Parse(userId));
+            if (user == null || !user.IsActive)
+                return new MeResponse { Success = false };
+
+            return new MeResponse
+            {
+                Success = true,
+                User = new UserDto
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    FullName = user.FullName,
+                    Phone = user.Phone,
+                    CreatedAt = user.CreatedAt
                 }
             };
         }

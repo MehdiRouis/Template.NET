@@ -5,6 +5,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Template.Api.Extensions;
+using Template.Api.Security.Sessions;
+
+
+JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +26,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     o.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
-        ValidIssuer = $"{(builder.Configuration["Project:Name"] ?? "base").ToLower()}.identity",
+        ValidIssuer = $"{(builder.Configuration["Project:Name"] ?? "base").ToLowerInvariant()}.identity",
 
         ValidateAudience = true,
-        ValidAudience = $"{(builder.Configuration["Project:Name"] ?? "base").ToLower()}.api",
+        ValidAudience = $"{(builder.Configuration["Project:Name"] ?? "base").ToLowerInvariant()}.api",
 
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
@@ -31,6 +37,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SigningKey"] ?? "base")),
 
         ClockSkew = TimeSpan.FromSeconds(10)
+    };
+    o.Events = new JwtBearerEvents
+    {
+        OnTokenValidated = JwtSessionHandler.OnTokenValidated
     };
 });
 
@@ -50,10 +60,6 @@ else
 {
     MigrationInitializer.Initialize(app);
 }
-
-JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
-JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
 
 app.UseHttpsRedirection();
 app.UseRouting();

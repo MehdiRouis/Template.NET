@@ -46,9 +46,9 @@ Enterprise-ready .NET API generated from the IAM Core Template.
 
 ## Authentication Model
 
-Login → Short-lived JWT  
-      → Centralized Session Authority (DB)  
-      → Controllers
+Login -> Short-lived JWT  
+      -> Centralized Session Authority (DB)  
+      -> Controllers
 
 ## Getting Started
 
